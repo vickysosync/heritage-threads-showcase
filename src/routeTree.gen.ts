@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KidsRouteImport } from './routes/kids'
+import { Route as LagnaBastaRouteImport } from './routes/lagna-basta'
 import { Route as MenRouteImport } from './routes/men'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as WeddingRouteImport } from './routes/wedding'
@@ -26,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const KidsRoute = KidsRouteImport.update({
   id: '/kids',
   path: '/kids',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LagnaBastaRoute = LagnaBastaRouteImport.update({
+  id: '/lagna-basta',
+  path: '/lagna-basta',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MenRoute = MenRouteImport.update({
@@ -62,6 +68,7 @@ const ProductIdRoute = ProductIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kids': typeof KidsRoute
+  '/lagna-basta': typeof LagnaBastaRoute
   '/men': typeof MenRoute
   '/shop': typeof ShopRoute
   '/wedding': typeof WeddingRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kids': typeof KidsRoute
+  '/lagna-basta': typeof LagnaBastaRoute
   '/men': typeof MenRoute
   '/shop': typeof ShopRoute
   '/wedding': typeof WeddingRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/kids': typeof KidsRoute
+  '/lagna-basta': typeof LagnaBastaRoute
   '/men': typeof MenRoute
   '/shop': typeof ShopRoute
   '/wedding': typeof WeddingRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/kids'
+    | '/lagna-basta'
     | '/men'
     | '/shop'
     | '/wedding'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/kids'
+    | '/lagna-basta'
     | '/men'
     | '/shop'
     | '/wedding'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/kids'
+    | '/lagna-basta'
     | '/men'
     | '/shop'
     | '/wedding'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KidsRoute: typeof KidsRoute
+  LagnaBastaRoute: typeof LagnaBastaRoute
   MenRoute: typeof MenRoute
   ShopRoute: typeof ShopRoute
   WeddingRoute: typeof WeddingRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/kids'
       fullPath: '/kids'
       preLoaderRoute: typeof KidsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lagna-basta': {
+      id: '/lagna-basta'
+      path: '/lagna-basta'
+      fullPath: '/lagna-basta'
+      preLoaderRoute: typeof LagnaBastaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/men': {
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KidsRoute: KidsRoute,
+  LagnaBastaRoute: LagnaBastaRoute,
   MenRoute: MenRoute,
   ShopRoute: ShopRoute,
   WeddingRoute: WeddingRoute,
